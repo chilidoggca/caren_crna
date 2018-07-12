@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Form, Item, Icon, Label, Input, Content, CheckBox, Button} from 'native-base';
-import {Linking} from 'react-native';
+import {AsyncStorage} from 'react-native';
 
 class SignInScreen extends Component {
 	constructor(props) {
@@ -8,6 +8,7 @@ class SignInScreen extends Component {
 		this.state = {
 			email: '',
 			password: '',
+			rememberMe: false
 		}
 	}
 
@@ -15,14 +16,21 @@ class SignInScreen extends Component {
     title: 'Sign In',
   };
 
-	signIn = (event) => {
-
+	handleRememberMe = (event) => {
+		this.setState({
+			rememberMe: !this.state.rememberMe
+		})
 	}
 
+	_signInAsync = async () => {
+		await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('App');
+	}
+
+// UI design: use content padder vs. view with marginHorizontal?
   render() {
-		const {email, password, agreeToTerms} = this.state;
+		const {email, password, rememberMe} = this.state;
     return (
-			<Content>
 	      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginHorizontal: 30 }}>
 					<Form style={{width: '100%'}}>
 						<Item floatingLabel={true}>
@@ -36,17 +44,21 @@ class SignInScreen extends Component {
 							<Icon name='lock' type='Entypo' size={15} style={{color: '#555555'}} />
 						</Item>
 					</Form>
+					{/*
+						<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start', marginTop: 30}}>
+						<CheckBox checked={rememberMe} onPress={this.handleRememberMe.bind(this)} style={{marginHorizontal: 20}} />
+						<Text>Remember me</Text>
+						</View>
+					*/}
 					<Button style={{
 							marginVertical: 30
-						}} warning={true} rounded={true} block={true} onPress={
-							() => this.signIn.bind(this)
-						}>
+						}} warning={true} rounded={true} block={true} onPress={this._signInAsync}>
 						<Text>
 							Sign In
 						</Text>
 					</Button>
+					<Text style={{textDecorationLine: 'underline'}} onPress={()=>this.props.navigation.navigate('ForgotPassword')}>Forgot password?</Text>
 	      </View>
-			</Content>
     );
   }
 }

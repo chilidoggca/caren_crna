@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import {
-	HomeScreen,
+	AuthLoadingScreen,
+	AuthScreen,
 	DetailsScreen,
 	SignInScreen,
+	ForgotPasswordScreen,
 	CreateAccountScreen,
 	TermsAndConditionsScreen,
+	HomeScreen,
 } from './screens';
 
-const RootStack = createStackNavigator(
+const AuthStack = createStackNavigator(
 	{
-    Home: HomeScreen,
-    Details: DetailsScreen,
+    Auth: AuthScreen,
 		SignIn: SignInScreen,
+		ForgotPassword: ForgotPasswordScreen,
 		CreateAccount: CreateAccountScreen,
 		Terms: TermsAndConditionsScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Auth',
 		navigationOptions: {
       headerStyle: {
         backgroundColor: '#f0ad4e',
@@ -28,6 +31,37 @@ const RootStack = createStackNavigator(
       },
     },
 		cardStyle : { backgroundColor : '#ffffff' },
+  }
+);
+
+const AppStack = createStackNavigator(
+	{
+		Home: HomeScreen,
+		Details: DetailsScreen,
+	},
+	{
+    initialRouteName: 'Home',
+		navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ffffff',
+      },
+      headerTintColor: '#000000',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+		cardStyle : { backgroundColor : '#ffffff' },
+  }
+)
+
+const RootStack = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
 );
 
