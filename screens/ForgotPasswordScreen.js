@@ -15,6 +15,10 @@ class ForgotPasswordScreen extends Component {
     title: 'Forgot Password?',
   };
 
+	handleResetPasswordPress = (event) => {
+		setTimeout( () => this.props.navigation.navigate('Auth'), 1000);
+	}
+
   render() {
 		const {email, emailConfirm} = this.state;
     return (
@@ -34,7 +38,7 @@ class ForgotPasswordScreen extends Component {
 				</Form>
 				<Button style={{
 						marginVertical: 30
-					}} warning={true} block={true} rounded={true}>
+					}} warning={true} block={true} rounded={true} onPress={this.handleResetPasswordPress.bind(this)}>
 					<Text>
 						Reset Password
 					</Text>

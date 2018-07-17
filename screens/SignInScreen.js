@@ -40,7 +40,7 @@ class SignInScreen extends Component {
 						</Item>
 						<Item floatingLabel={true}>
 							<Label>Password</Label>
-							<Input name='password' type='password' value={password} onChangeText={(value) => this.setState({password: value})}/>
+							<Input name='password' type='password' value={password} secureTextEntry={true} onChangeText={(value) => this.setState({password: value})}/>
 							<Icon name='lock' type='Entypo' size={15} style={{color: '#555555'}} />
 						</Item>
 					</Form>

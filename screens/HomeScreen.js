@@ -22,25 +22,27 @@ class HomeScreen extends Component {
 
 	static navigationOptions = {
     header: <LogoTitle />,
+		title: 'Home',
   };
 
 	static navigationProps = {
-		header: ({ logout }) => {
+		header: ({ navigation }) => {
+			console.log(navigation)
 			return {
-				logout: this.props.navigation.navigate('Auth')
+				logout: navigation.navigate('Auth')
 			}
 		}
 	}
 
 	render() {
-		return (<Content padder style={{backgroundColor: 'red'}}>
+		return (
 			<View style={{
 				flex: 1,
 				justifyContent: 'center',
 				alignItems: 'center',
 				marginHorizontal: 30,
 			}}>
-				<Text>Home</Text>
+				<Text>Home Page</Text>
 					<Button style={{
 							marginTop: 30
 						}} warning={true} rounded={true} block={true} onPress={() => this.props.navigation.navigate('Details')}>
@@ -48,8 +50,15 @@ class HomeScreen extends Component {
 							Details
 						</Text>
 					</Button>
+					<Button style={{
+							marginTop: 30
+						}} warning={true} rounded={true} block={true} onPress={() => this.props.navigation.navigate('Tasks')}>
+						<Text>
+							Tasks
+						</Text>
+					</Button>
 			</View>
-	</Content>)
+		)
 	}
 }
 

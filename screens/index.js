@@ -4,5 +4,7 @@ export * from './DetailsScreen';
 export * from './SignInScreen';
 export * from './ForgotPasswordScreen';
 export * from './CreateAccountScreen';
+export * from './CreateAccountTwoScreen';
 export * from './TermsAndConditionsScreen';
 export * from './HomeScreen';
+export * from './TasksScreen';

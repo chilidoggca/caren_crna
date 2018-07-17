@@ -10,8 +10,9 @@ class LogoTitle extends Component {
 
 	_signOutAsync = async () => {
 		await AsyncStorage.clear();
-		const {logout = () => {}} = this.props;
-    logout();
+		// const {navigation} = this.props;
+		// console.log(this.props);
+    // logout();
   };
 
 	render() {

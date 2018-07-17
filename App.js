@@ -7,9 +7,12 @@ import {
 	SignInScreen,
 	ForgotPasswordScreen,
 	CreateAccountScreen,
+	CreateAccountTwoScreen,
 	TermsAndConditionsScreen,
 	HomeScreen,
+	TasksScreen,
 } from './screens';
+import { Root } from 'native-base';
 
 const AuthStack = createStackNavigator(
 	{
@@ -17,6 +20,7 @@ const AuthStack = createStackNavigator(
 		SignIn: SignInScreen,
 		ForgotPassword: ForgotPasswordScreen,
 		CreateAccount: CreateAccountScreen,
+		CreateAccountTwo: CreateAccountTwoScreen,
 		Terms: TermsAndConditionsScreen,
   },
   {
@@ -38,6 +42,7 @@ const AppStack = createStackNavigator(
 	{
 		Home: HomeScreen,
 		Details: DetailsScreen,
+		Tasks: TasksScreen,
 	},
 	{
     initialRouteName: 'Home',
@@ -67,6 +72,10 @@ const RootStack = createSwitchNavigator(
 
 export default class App extends Component {
   render() {
-    return <RootStack />;
+    return (
+			<Root>
+				<RootStack />
+			</Root>
+		)
   }
 }
